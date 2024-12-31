@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "Company",
+ "autoname": "field:company",
  "creation": "2021-05-12 02:55:22.987781",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -40,10 +40,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-05-12 02:55:22.987781",
+ "modified": "2024-12-27 16:40:24.076880",
  "modified_by": "Administrator",
  "module": "Grynnswissqrbill",
  "name": "Swiss QR Bill Settings",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -61,5 +62,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

@@ -1,4 +1,4 @@
-import SwissQRBill from "swissqrbill/lib/browser";
+import { calculateQRReferenceChecksum } from "swissqrbill/utils";
 import { FRAPPE_FILE_UPLOAD_ENDPOINT } from "./constant";
 import { updateMessage } from "./message";
 
@@ -119,7 +119,7 @@ export const getReferenceCode = (docname) => {
   const _ref = docname.split("-").join("");
   const ref = _ref.substr(_ref.length - 7);
   const _reference = `0000000000000000000${ref}`;
-  const checksum = SwissQRBill.utils.calculateQRReferenceChecksum(_reference);
+  const checksum = calculateQRReferenceChecksum(_reference);
   return `${_reference}${checksum}`;
 };
 

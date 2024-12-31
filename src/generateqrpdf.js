@@ -1,4 +1,6 @@
-import SwissQRBill from "swissqrbill/lib/browser";
+import { SwissQRBill } from "swissqrbill/pdf";
+import PDFDocument from "pdfkit";
+import blobStream from "blob-stream";
 import { showError, showProgress, uploadFileAsAttachment } from "./utils";
 
 export const generateQRPDF = (
@@ -9,19 +11,20 @@ export const generateQRPDF = (
   language
 ) => {
   const data = paymentinfo;
-  const stream = new SwissQRBill.BlobStream();
   try {
-    const pdf = new SwissQRBill.PDF(data, stream, {
-      language: language || "DE",
+    const pdf = new PDFDocument({
       size: papersize || "A4",
+      lang: language || "DE",
     });
+    const qrbill = new SwissQRBill(data);
 
     showProgress(60, "generating pdf...");
-    pdf.on("finish", () => {
-      // const url = stream.toBlobURL("application/pdf");
-      // const triggerDownload()
-      showProgress(80, "uploading pdf...");
-      uploadFileAsAttachment(stream.toBlob(), docname, frm);
+    qrbill.attachTo(pdf);
+    showProgress(80, "uploading pdf...");
+    const stream = pdf.pipe(blobStream());
+    pdf.end();
+    stream.on("finish", () => {
+      uploadFileAsAttachment(stream.toBlob("application/pdf"), docname, frm);
     });
   } catch (error) {
     showError(error);

@@ -10,15 +10,17 @@ app_icon = "octicon octicon-file-directory"
 app_color = "grey"
 app_email = "grynn@grynn.in"
 app_license = "MIT"
-fixtures = [{"dt": "Custom Field", "filters": [
-    ["fieldname", "in", ("esr_reference_code")]]}]
+fixtures = [
+    {"dt": "Custom Field", "filters": [["fieldname", "in", ("esr_reference_code")]]}
+]
 
 # Includes in <head>
 # ------------------
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/grynnswissqrbill/css/grynnswissqrbill.css"
-app_include_js = "/assets/grynnswissqrbill/js/index.js"
+app_include_js = "grynnswissqrbill.bundle.js"
+
 
 # include js, css files in header of web template
 # web_include_css = "/assets/grynnswissqrbill/css/grynnswissqrbill.css"
@@ -48,7 +50,7 @@ app_include_js = "/assets/grynnswissqrbill/js/index.js"
 
 # website user home page (by Role)
 # role_home_page = {
-#	"Role": "home_page"
+# "Role": "home_page"
 # }
 
 # Generators
@@ -98,7 +100,7 @@ app_include_js = "/assets/grynnswissqrbill/js/index.js"
 # 		"on_update": "method",
 # 		"on_cancel": "method",
 # 		"on_trash": "method"
-#	}
+# }
 # }
 
 # Scheduled Tasks
